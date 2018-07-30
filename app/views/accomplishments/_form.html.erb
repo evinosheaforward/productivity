@@ -1,0 +1,37 @@
+<%= form_with(model: accomplishment, local: true) do |form| %>
+  <% if accomplishment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(accomplishment.errors.count, "error") %> prohibited this accomplishment from being saved:</h2>
+
+      <ul>
+      <% accomplishment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :time_working %>
+    <%= form.text_field :time_working %>
+  </div>
+
+  <div class="field">
+    <%= form.label :time_productive %>
+    <%= form.text_field :time_productive %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.datetime_select :date %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

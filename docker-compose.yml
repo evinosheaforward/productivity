@@ -1,0 +1,49 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    volumes:
+      - /usr/data/volumes/pgdata/etc:/etc/postgresql
+      - /usr/data/volumes/pgdata/log:/var/log/postgresql
+      - /usr/data/volumes/pgdata/data:/var/lib/postgresql/data
+    restart: always
+    environment:
+      POSTGRES_USER: pguser
+      POSTGRES_PASSWORD: pguser
+      POSTGRES_DB: pgdb
+      DB_HOST: db
+      PG_DATA: /var/lib/postgresql
+    ports:
+      - "5432:5432"
+  app:
+    build: .
+    command: bundle exec rails s -p 3004 -b '0.0.0.0'
+    volumes:
+      - ".:/productivity"
+    ports:
+      - "3004:3004"
+    depends_on:
+      - db
+    links:
+      - db
+    environment:
+      POSTGRES_USER: pguser
+      POSTGRES_PASSWORD: pguser
+      POSTGRES_DB: pgdb
+      DB_HOST: db
+  synthesize:
+    build: ./models/
+    command: python model/run_models.py
+    volumes:
+      - ".:/productivity"
+    ports:
+      - "3005:3005"
+    depends_on:
+      - db
+    links:
+      - db
+    environment:
+      POSTGRES_USER: pguser
+      POSTGRES_PASSWORD: pguser
+      POSTGRES_DB: pgdb
+      DB_HOST: db

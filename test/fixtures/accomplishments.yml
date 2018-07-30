@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  time_working: 9.99
+  time_productive: 9.99
+  date: 2018-07-30 14:44:27
+
+two:
+  name: MyString
+  time_working: 9.99
+  time_productive: 9.99
+  date: 2018-07-30 14:44:27

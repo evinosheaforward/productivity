@@ -1,0 +1,19 @@
+<html>
+    <script type="text/javascript">
+
+        var path_parts = window.location.hash.slice(1).split("/");
+        path_parts.splice(-1,0,"_latest");
+        var destination = "{{HTTP_BASE_URL}}/ipy/notebooks/"+
+            path_parts.join("/");
+        if( window.location.origin ==  "http://mldb.ai"      || 
+            window.location.origin ==  "http://docs.mldb.ai" || 
+            window.location.origin == "https://docs.mldb.ai"   )
+        {
+            window.location = destination + ".html";
+        }
+        else
+        {
+            window.location = destination + ".ipynb";
+        }
+    </script>
+</html>

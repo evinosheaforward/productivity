@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @accomplishment.name %>
+</p>
+
+<p>
+  <strong>Time working:</strong>
+  <%= @accomplishment.time_working %>
+</p>
+
+<p>
+  <strong>Time productive:</strong>
+  <%= @accomplishment.time_productive %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @accomplishment.date %>
+</p>
+
+<%= link_to 'Edit', edit_accomplishment_path(@accomplishment) %> |
+<%= link_to 'Back', accomplishments_path %>
