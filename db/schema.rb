@@ -15,15 +15,6 @@ ActiveRecord::Schema.define(version: 2018_07_30_174218) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "acccomplishments", force: :cascade do |t|
-    t.string "name"
-    t.decimal "time_working"
-    t.decimal "time_productive"
-    t.datetime "date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "accomplishments", force: :cascade do |t|
     t.string "name"
     t.decimal "time_working"
