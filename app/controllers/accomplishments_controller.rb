@@ -4,7 +4,7 @@ class AccomplishmentsController < ApplicationController
   # GET /accomplishments
   # GET /accomplishments.json
   def index
-    @accomplishments = Accomplishment.all
+    @accomplishments = Accomplishment.paginate(page: params[:page])
   end
 
   # GET /accomplishments/1
