@@ -3,9 +3,25 @@ require 'test_helper'
 class AccomplishmentsControllerTest < ActionDispatch::IntegrationTest
 
 	def setup
-		@user = users(:evin)
-    @accomplishment = @user.accomplishments.build(name: "Lorem ipsum", timeWorking: 10, timeProductive: 8)
+    @accomplishment = accomplishments(:one)
   end
+
+	test "should redirect create when not logged in" do
+		assert_no_difference 'Accomplishment.count' do
+			post accomplishments_path, params: { accomplishment: { 	name: "Lorem ipsum",
+																															timeWorking: 50,
+																															timeProductive: 20,
+																															date: Time.zone.now}}
+		end
+		assert_redirected_to login_url
+	end
+
+	test "should redirect destroy when not logged in" do
+		assert_no_difference 'Accomplishment.count' do
+			delete accomplishment_path(@accomplishment)
+		end
+		assert_redirected_to login_url
+	end
 
   test "should be valid" do
     assert @accomplishment.valid?
@@ -40,5 +56,9 @@ class AccomplishmentsControllerTest < ActionDispatch::IntegrationTest
 		@accomplishment.timeProductive = 12.0
 		@accomplishment.timeWorking = 10.0
 		assert_not @accomplishment.valid?
+	end
+
+	test "order should be most recent first" do
+		assert_equal accomplishments.sort_by { |acc| acc[:date] }.last, Accomplishment.first
 	end
 end

@@ -1,5 +1,6 @@
 class Accomplishment < ApplicationRecord
 	belongs_to :user
+	default_scope -> { order(date: :desc) }
 	validates :user_id, presence: true
 	validates :name, presence: true, length: { maximum: 60 }
 	validates :timeWorking, presence: true, numericality: { greater_than_or_equal_to: 5 }

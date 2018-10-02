@@ -1,16 +1,29 @@
-<div class="center jumbotron">
-  <h1>Welcome to ECO-Productivity</h1>
+<% if logged_in? %>
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="user_info">
+        <%= render 'shared/user_info' %>
+      </section>
+      <section class="micropost_form">
+        <%= render 'shared/accomplishment_form' %>
+      </section>
+    </aside>
+  </div>
+<% else %>
+	<div class="center jumbotron">
+	  <h1>Welcome to ECO-Productivity</h1>
 
-  <h2>
-    This is the home page for a
-    productivity app!
-		<br/>
-		Track your accomplishments
-		and see your progress!
-  </h2>
+	  <h2>
+	    This is the home page for a
+	    productivity app!
+			<br/>
+			Track your accomplishments
+			and see your progress!
+	  </h2>
 
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
-</div>
+	  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+	</div>
 
-<%= link_to image_tag("logo.png", alt: "ECO logo"),
-            'http://evinoshea.info' %>
+	<%= link_to image_tag("logo.png", alt: "ECO logo"),
+	            'http://evinoshea.info' %>
+<% end %>

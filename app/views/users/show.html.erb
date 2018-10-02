@@ -1,4 +1,4 @@
-<% provide(:title, @user.name) %>
+<% provide(:title, full_title(@user.name) ) %>
 <div class="row">
   <aside class="col-md-4">
     <section class="user_info">
@@ -7,4 +7,13 @@
       </h1>
     </section>
   </aside>
+	<div class="col-md-8">
+		<% if @user.accomplishments.any? %>
+			<h3>Accomplishments (<%= @user.accomplishments.count %>)</h3>
+			<ol class="accomplishments">
+				<%= render @accomplishments %>
+			</ol>
+			<%= will_paginate @accomplishments %>
+		<% end %>
+	</div>
 </div>

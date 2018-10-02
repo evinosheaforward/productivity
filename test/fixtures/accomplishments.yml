@@ -2,10 +2,35 @@ one:
   name: MyAcc
   timeWorking: 10.00
   timeProductive: 9.98
-  date: 2018-07-30 14:44:27
+  date: <%= 10.minutes.ago %>
+  user: evin
 
 two:
-  name: MyAcc
+  name: MyAcc2
   timeWorking: 9.99
   timeProductive: 9.98
-  date: 2018-07-30 14:44:27
+  date: <%= 3.years.ago %>
+  user: evin
+
+three:
+  name: MyAcc3
+  timeWorking: 40
+  timeProductive: 35
+  date: <%= 2.hours.ago %>
+  user: evin
+
+four:
+  name: MyAcc4
+  timeWorking: 40
+  timeProductive: 35
+  date: <%= Time.zone.now %>
+  user: evin
+
+<% 30.times do |n| %>
+micropost_<%= n %>:
+  name: <%= Faker::Lorem.sentence(1) %>
+  timeWorking: 40
+  timeProductive: 35
+  date: <%= 42.days.ago %>
+  user: evin
+<% end %>

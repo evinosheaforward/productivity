@@ -1,0 +1,25 @@
+<%= form_for(@accomplishment) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <div class="field">
+    <%= f.label "Name of the accomplishment" %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Time Working (minutes)" %>
+    <%= f.text_field :timeWorking %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Time Productive (minutes)" %>
+    <%= f.text_field :timeProductive %>
+  </div>
+
+  <div class="field">
+    <%= f.label "When was this accomplished?" %>
+    <%= f.datetime_select :date %>
+  </div>
+
+	<%= f.submit "Done!", class: "btn btn-primary" %>
+<% end %>

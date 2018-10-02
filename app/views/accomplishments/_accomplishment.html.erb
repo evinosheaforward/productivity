@@ -1,0 +1,10 @@
+<li id="accomplishment-<%= accomplishment.id %>">
+  <%= accomplishment.user %>
+  <span class="user"><%= link_to accomplishment.user.name, accomplishment.user %></span>
+  <span class="name"><%= accomplishment.name %></span>
+	<span class="timeWorking"><%= accomplishment.timeWorking %> minutes </span>
+	<span class="timeProductive"><%= (accomplishment.timeProductive / accomplishment.timeWorking ) * 100  %> % productive</span>
+  <span class="timestamp">
+    Accomplished <%= time_ago_in_words(accomplishment.date) %> ago.
+  </span>
+</li>

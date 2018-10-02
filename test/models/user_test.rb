@@ -77,5 +77,11 @@ class UserTest < ActiveSupport::TestCase
 		assert_not @user.authenticated?(:remember, '')
 	end
 
-
+	test "associated accomplishments should be destroyed" do
+		@user.save
+		@user.accomplishments.create!(name: "Lorem ipsum", timeWorking: 10, timeProductive: 8)
+		assert_difference 'Accomplishment.count', -1 do
+			@user.destroy
+		end
+	end
 end
