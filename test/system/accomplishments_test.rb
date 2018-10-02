@@ -16,8 +16,8 @@ class AccomplishmentsTest < ApplicationSystemTestCase
 
     fill_in "Date", with: @accomplishment.date
     fill_in "Name", with: @accomplishment.name
-    fill_in "Time Productive", with: @accomplishment.time_productive
-    fill_in "Time Working", with: @accomplishment.time_working
+    fill_in "Time Productive", with: @accomplishment.timeProductive
+    fill_in "Time Working", with: @accomplishment.timeWorking
     click_on "Create Accomplishment"
 
     assert_text "Accomplishment was successfully created"

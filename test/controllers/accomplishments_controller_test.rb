@@ -1,48 +1,44 @@
 require 'test_helper'
 
 class AccomplishmentsControllerTest < ActionDispatch::IntegrationTest
-  setup do
-    @accomplishment = accomplishments(:one)
+
+	def setup
+		@user = users(:evin)
+    @accomplishment = @user.accomplishments.build(name: "Lorem ipsum", timeWorking: 10, timeProductive: 8)
   end
 
-  test "should get index" do
-    get accomplishments_url
-    assert_response :success
+  test "should be valid" do
+    assert @accomplishment.valid?
   end
 
-  test "should get new" do
-    get new_accomplishment_url
-    assert_response :success
+  test "user id should be present" do
+    @accomplishment.user_id = nil
+		assert_not @accomplishment.valid?
   end
 
-  test "should create accomplishment" do
-    assert_difference('Accomplishment.count') do
-      post accomplishments_url, params: { accomplishment: { date: @accomplishment.date, name: @accomplishment.name, time_productive: @accomplishment.time_productive, time_working: @accomplishment.time_working } }
-    end
+	test "name should be present" do
+		@accomplishment.name = "    "
+		assert_not @accomplishment.valid?
+	end
 
-    assert_redirected_to accomplishment_url(Accomplishment.last)
-  end
+	test "name should be at most 60 characters" do
+		@accomplishment.name = "a" * 61
+		assert_not @accomplishment.valid?
+	end
 
-  test "should show accomplishment" do
-    get accomplishment_url(@accomplishment)
-    assert_response :success
-  end
+	test "timeWorking should be numerical" do
+		@accomplishment.timeWorking = "hello"
+		assert_not @accomplishment.valid?
+	end
 
-  test "should get edit" do
-    get edit_accomplishment_url(@accomplishment)
-    assert_response :success
-  end
+	test "timeProductive should be numerical" do
+		@accomplishment.timeProductive = "hello"
+		assert_not @accomplishment.valid?
+	end
 
-  test "should update accomplishment" do
-    patch accomplishment_url(@accomplishment), params: { accomplishment: { date: @accomplishment.date, name: @accomplishment.name, time_productive: @accomplishment.time_productive, time_working: @accomplishment.time_working } }
-    assert_redirected_to accomplishment_url(@accomplishment)
-  end
-
-  test "should destroy accomplishment" do
-    assert_difference('Accomplishment.count', -1) do
-      delete accomplishment_url(@accomplishment)
-    end
-
-    assert_redirected_to accomplishments_url
-  end
+	test "timeProductive should be less than timeWorking" do
+		@accomplishment.timeProductive = 12.0
+		@accomplishment.timeWorking = 10.0
+		assert_not @accomplishment.valid?
+	end
 end

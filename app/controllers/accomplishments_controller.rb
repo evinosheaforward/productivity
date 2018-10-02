@@ -69,6 +69,6 @@ class AccomplishmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def accomplishment_params
-      params.require(:accomplishment).permit(:name, :time_working, :time_productive, :date)
+      params.require(:accomplishment).permit(:name, :timeWorking, :timeProductive, :date)
     end
 end

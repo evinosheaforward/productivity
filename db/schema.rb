@@ -10,18 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_01_190343) do
+ActiveRecord::Schema.define(version: 2018_10_02_160751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "accomplishments", force: :cascade do |t|
     t.string "name"
-    t.decimal "time_working"
-    t.decimal "time_productive"
+    t.decimal "timeWorking"
+    t.decimal "timeProductive"
     t.datetime "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id", "created_at"], name: "index_accomplishments_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_accomplishments_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -40,4 +43,5 @@ ActiveRecord::Schema.define(version: 2018_10_01_190343) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "accomplishments", "users"
 end
