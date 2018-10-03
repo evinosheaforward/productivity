@@ -17,14 +17,14 @@ three:
   timeWorking: 40
   timeProductive: 35
   date: <%= 2.hours.ago %>
-  user: evin
+  user: archer
 
 four:
   name: MyAcc4
   timeWorking: 40
   timeProductive: 35
   date: <%= Time.zone.now %>
-  user: evin
+  user: archer
 
 <% 30.times do |n| %>
 micropost_<%= n %>:

@@ -1,9 +1,10 @@
 class AccomplishmentsController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy]
+  before_action :logged_in_user, 	only: [:create, :destroy]
+	before_action :correct_user,		only: :destroy
 
 	def create
 		@accomplishment = current_user.accomplishments.build(accomplishment_params)
-		if @accomplishmnet.save
+		if @accomplishment.save
 			flash[:success] = "Accomplishment created!"
 			redirect_to root_url
 		else
@@ -12,6 +13,9 @@ class AccomplishmentsController < ApplicationController
 	end
 
   def destroy
+		@accomplishment.destroy
+		flash[:success] = "Accomplishment deleted"
+		redirect_to request.referrer || root_url
   end
 
   private
@@ -20,4 +24,9 @@ class AccomplishmentsController < ApplicationController
     def accomplishment_params
       params.require(:accomplishment).permit(:name, :timeWorking, :timeProductive, :date)
     end
+
+		def correct_user
+			@accomplishment = current_user.accomplishments.find_by(id: params[:id])
+			redirect_to root_url if @accomplishment.nil?
+		end
 end

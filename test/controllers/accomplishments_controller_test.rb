@@ -23,6 +23,15 @@ class AccomplishmentsControllerTest < ActionDispatch::IntegrationTest
 		assert_redirected_to login_url
 	end
 
+	test "should redirect destroy for wrong accomplishment" do
+		log_in_as(users(:evin))
+		accomplishment = accomplishments(:three)
+		assert_no_difference 'Accomplishment.count' do
+			delete accomplishment_path(accomplishment)
+		end
+		assert_redirected_to root_url
+	end
+
   test "should be valid" do
     assert @accomplishment.valid?
   end

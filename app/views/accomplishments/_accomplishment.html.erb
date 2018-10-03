@@ -6,5 +6,9 @@
 	<span class="timeProductive"><%= (accomplishment.timeProductive / accomplishment.timeWorking ) * 100  %> % productive</span>
   <span class="timestamp">
     Accomplished <%= time_ago_in_words(accomplishment.date) %> ago.
-  </span>
+		<% if current_user?(accomplishment.user) %>
+			<%= link_to "delete", accomplishment, method: :delete,
+																					 data: { confirm: "Are you sure?" } %>
+		<% end %>
+	</span>
 </li>
