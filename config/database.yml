@@ -83,6 +83,4 @@ test:
 #
 production:
   <<: *default
-  database: productivity_production
-  username: appuser
   password: <%= ENV['DB_PASS'] %>
