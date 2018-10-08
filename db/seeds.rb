@@ -21,7 +21,7 @@ end
 users = User.order(:created_at).take(6)
 50.times do |n|
   name = Faker::Lorem.sentence(1)
-	timeWorking = 50.0
+	timeWorking = rand(50)
 	timeProductive = timeWorking * (n / 50.0)
 	date = (50-n).days.ago
   users.each { |user| user.accomplishments.create!(

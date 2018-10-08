@@ -2,10 +2,10 @@ var loadData = function(){
                 $.ajax({
                   type: 'GET',
                   contentType: 'application/json; charset=utf-8',
-                  url: '/accomplishments',
+                  url: "/accomplishments",
                   dataType: 'json',
                   success: function(data){
-										console.log("Going to do the thing!");
+										console.log("Making the plot!");
                     drawBarPlot(data);
                   },
                   failure: function(result){
@@ -30,22 +30,7 @@ function drawBarPlot(data){
 	});
 	var workMax = d3.max(data, function(d) { return d.timeWorking; });
 
-	// Create the Scale we will use for the Axes
-	// var xScale = d3.scaleLinear()
-	// 	.domain([0, workMax])
-	// 	.range([0, width]);
-	//
-	// var yScale = d3.scaleLinear()
-	// 	.domain([0, prodMax])
-	// 	.range([0, height]);
-	//
-	// // Create the axes to be called later
-	// var xAxis = d3.axisBottom.scale(xScale);
-	// var yAxis = d3.asixLeft.scale(yScale);
-
-	var svg = d3.select("#plot-container").append("h2")
-		.text("Time vs Productivity")
-		.append("svg")
+	var svg = d3.select("#plot")
 		.attr("width", width + margin.left + margin.right)
 		.attr("height", height + margin.top + margin.bottom);
 
