@@ -1,33 +1,7 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Accomplishments</h1>
-<%= link_to 'New Accomplishment', new_accomplishment_path %>
-<%= will_paginate %>
-<br/><br/>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Time Spend (minutes)</th>
-      <th>Time Productive (minutes)</th>
-      <th>Date and Time of accomplishment</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div id="plot-container">
+</div>
 
-  <tbody>
-    <% @accomplishments.each do |accomplishment| %>
-      <tr>
-        <td><%= accomplishment.name %></td>
-        <td><%= accomplishment.timeWorking %></td>
-        <td><%= accomplishment.timeProductive %></td>
-        <td><%= accomplishment.date %></td>
-        <td><%= link_to 'Show', accomplishment %></td>
-        <td><%= link_to 'Edit', edit_accomplishment_path(accomplishment) %></td>
-        <td><%= link_to 'Destroy', accomplishment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= will_paginate %>
-<br>
+<script type="text/javascript">
+	loadData();
+</script>

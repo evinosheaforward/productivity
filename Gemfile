@@ -31,6 +31,9 @@ gem 'faker', '~> 1.6', '>= 1.6.6'
 gem 'will_paginate',           '3.1.6'
 gem 'bootstrap-will_paginate', '1.0.0'
 
+# Data visualizations
+gem 'd3-rails', '~> 4.1'
+
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

@@ -1,6 +1,18 @@
 class AccomplishmentsController < ApplicationController
-  before_action :logged_in_user, 	only: [:create, :destroy]
-	before_action :correct_user,		only: :destroy
+	before_action :logged_in_user, 	only: [:index, :create, :edit, :update, :destroy]
+	before_action :correct_user,		only: [:destroy, :show, :edit, :update]
+
+	def index
+	  @accomplishments = current_user.accomplishments.all
+
+	  respond_to do |format|
+	    format.html
+	    format.json { render json: @accomplishments }
+	  end
+	end
+
+	def new
+	end
 
 	def create
 		@accomplishment = current_user.accomplishments.build(accomplishment_params)
@@ -17,6 +29,19 @@ class AccomplishmentsController < ApplicationController
 		flash[:success] = "Accomplishment deleted"
 		redirect_to request.referrer || root_url
   end
+
+	def edit
+	end
+
+	def update
+		if @accomplishment.update(accomplishment_params)
+			redirect_to @accomplishment
+			flash[:sucess] = "Accomplishment was successfully updated."
+		else
+			render :edit
+			flash[:danger] = "Unsuccessful update for the accomplishment."
+		end
+	end
 
   private
 
