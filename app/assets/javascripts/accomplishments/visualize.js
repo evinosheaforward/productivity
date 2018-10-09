@@ -55,11 +55,11 @@ function drawScatterPlot(data){
 
 	svg.append("g")
 		.call(xAxis)
-		.attr("transform", "translate(60, 350)")
+		.attr("transform", "translate(60, 330)")
 		.attr("font-size", "1.2em");
 
   svg.append("text")
-		.attr("transform", "translate(240, 395)")
+		.attr("transform", "translate(240, 380)")
 		.attr("fill", "#000")
 		.text("Time Working (Minutes)")
 		.attr("font-size", "1.2em");
